@@ -13,7 +13,7 @@ def create_app():
     
     app.config['SECRET_KEY'] = 'school password'
     app.config['JSON_SORT_KEYS'] = False
-    app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
+    app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg2://school:school@localhost:5432/school'#something is wrong here and i dont know what
     db.init_app(app)
     with app.app_context():
         
@@ -27,7 +27,7 @@ def create_app():
 
 
 def create_database(app):
-    if not path.exists('school/database.db'):
+    if not path.exists('school.db'):
         db.create_all(app=app)
         print('Created Database!')
 

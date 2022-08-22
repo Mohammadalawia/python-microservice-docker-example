@@ -2,13 +2,30 @@ version: '3.8'
 services:
   backend:
     build: .
+    depends_on:
+      - db
     environment:
       STAGE: test
+      SQLALCHEMY_DATABASE_URI: postgresql+psycopg2://school:school@db/school
     command: 'python main.py runserver 0.0.0.0:8000'
     networks:
       - default
     ports:
       - 8000:8000
+    restart: always
     volumes:
       - ./app:/usr/src/app/app
+  db:    
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: school
+      POSTGRES_PASSWORD: school
+      POSTGRES_DB: school
+    networks:
+      - default
+    ports:
+      - 5432:5432
     restart: always
+    volumes:
+      - ./data:/var/lib/postgresql/data
+  
