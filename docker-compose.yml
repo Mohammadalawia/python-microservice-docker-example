@@ -13,8 +13,6 @@ services:
     ports:
       - 8000:8000
     restart: always
-    volumes:
-      - ./app:/usr/src/app/app
   db:    
     image: postgres:latest
     environment:
@@ -28,4 +26,14 @@ services:
     restart: always
     volumes:
       - ./data:/var/lib/postgresql/data
-  
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4_container
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    networks:
+      - default
+    ports:
+      - "5050:80"

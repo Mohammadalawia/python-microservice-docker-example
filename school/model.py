@@ -8,23 +8,20 @@ class student(db.Model):
     address = db.Column(db.String(100), nullable=False)
     gender = db.Column(db.Enum('male', 'female'), nullable=False)
 
-    
-    
     def __init__(self, student_id, student_name, address,gender):
         self.student_id = student_id
         self.student_name = student_name
         self.address = address
         self.gender=gender
+
     def create(student_id, student_name,address,gender):
         me = student(student_id,student_name,address,gender)
         db.session.add(me)
         db.session.commit()
 
-
     def __repr__(self):
         students = {"studentid":self.student_id,"student name":self.student_name,"Address":self.address,"Gender":self.gender}
         return f"{students}"
-
 
     @property
     def serialize(self):

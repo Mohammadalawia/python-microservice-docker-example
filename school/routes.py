@@ -6,12 +6,16 @@ from .model import student
 
 @app.route('/', methods=['GET'])
 def index():
-
     try:
         return jsonify(students_table=[i.serialize for i in student.query.all()])
-
     except Exception as e:
         return f"coudn't connect to database :{e}"
+
+
+@app.route('/hello', methods=['GET'])
+def hello():
+    return "hello"
+
 
 # @app.route('/teachers')
 # def teachers():
