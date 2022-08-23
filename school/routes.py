@@ -17,6 +17,8 @@ def hello():
     return "hello"
 
 
+
+
 # @app.route('/teachers')
 # def teachers():
 #     return jsonify(teachers_table=)
