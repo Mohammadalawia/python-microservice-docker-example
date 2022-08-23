@@ -1,6 +1,6 @@
 from flask import jsonify
 from flask import current_app as app
-from .model import student
+from .model import student, teachers
 
 
 
@@ -9,14 +9,19 @@ def index():
     try:
         return jsonify(students_table=[i.serialize for i in student.query.all()])
     except Exception as e:
-        return f"coudn't connect to database :{e}"
+        return f"issue:{e}"
 
 
 @app.route('/hello', methods=['GET'])
 def hello():
     return "hello"
 
-
+@app.route("/teachers", methods=['GET'])
+def teacher_list():
+    try:
+        return jsonify(teachers_table=[i.serialize for i in teachers.query.all()])
+    except Exception as e:
+        return f"issue :{e}"
 
 
 # @app.route('/teachers')

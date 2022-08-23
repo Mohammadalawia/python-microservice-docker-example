@@ -3,6 +3,7 @@ from school import db
 
 
 class student(db.Model): 
+
     student_id = db.Column(db.Integer, primary_key=True)
     student_name = db.Column(db.String(100), nullable=False)
     address = db.Column(db.String(100), nullable=False)
@@ -26,6 +27,37 @@ class student(db.Model):
     @property
     def serialize(self):
         return {"studentid":self.student_id,"student name":self.student_name,"Address":self.address,"Gender":self.gender}
+   
+
+
+
+
+
+class teachers(db.Model):
+    __bind_key__ = "school2"
+
+    teacher_id = db.Column(db.Integer, primary_key=True)
+    teacher_name = db.Column(db.String(100), nullable=False)
+    address = db.Column(db.Integer,  nullable=False)
+    teaching_subject = db.Column(db.String(100), nullable=False)
+    working_days = db.Column(db.String(200), nullable=False)
+
+
+    def __init__(self, student_id, student_name, address,teaching_subject,working_days):
+        self.teacher_id = student_id
+        self.teacher_name = student_name
+        self.address = address
+        self.teaching_subject=teaching_subject        
+        self.working_days=working_days
+
+
+
+    def __repr__(self):
+        return f"hello"
+
+    @property
+    def serialize(self):
+        return {"teacher_id":self.teacher_id,"teacher name":self.teacher_name,"Address":self.address,"teaching subject":self.teaching_subject,"working days":self.working_days}
    
 
 

@@ -2,15 +2,18 @@ import os
 
 
 class Config:
-    
+
     TESTING = True
     DEBUG = True
     SECRET_KEY = b'school password'
     SESSION_COOKIE_NAME = 'my_cookie'
 
 
-    SQLALCHEMY_DATABASE_URI = os.environ.get('SQLALCHEMY_DATABASE_URI',
-                                             'postgresql+psycopg2://school:school@0.0.0.0:5432/school')
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://school:school@db:5432/school'
+    SQLALCHEMY_BINDS = {
+        'school2' :                'postgresql+psycopg2://school:school@db:5432/school2'
+        }
+  
     SQLALCHEMY_USERNAME = 'school'
     SQLALCHEMY_PASSWORD = 'school'
     SQLALCHEMY_DATABASE_NAME = 'school'

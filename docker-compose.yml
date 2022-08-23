@@ -6,7 +6,6 @@ services:
       - db
     environment:
       STAGE: test
-      SQLALCHEMY_DATABASE_URI: postgresql+psycopg2://school:school@db/school
     command: 'python main.py runserver 0.0.0.0:8000'
     networks:
       - default
@@ -22,7 +21,7 @@ services:
     networks:
       - default
     ports:
-      - 5432:5432
+      - 5400:5432
     restart: always
     volumes:
       - ./data:/var/lib/postgresql/data
